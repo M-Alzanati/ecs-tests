@@ -3,7 +3,7 @@ import java.util.Date;
 import javax.persistence.Id;
 import javax.persistence.Version;
 
-public class X_Tax {
+public class XTax {
     
     private Object id;
     private BigDecimal base;
@@ -20,7 +20,7 @@ public class X_Tax {
     private Date updated;
     private String version;
 
-    public X_Tax() {
+    public XTax() {
     }
 
     public Object getId() {
