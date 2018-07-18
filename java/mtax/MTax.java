@@ -8,7 +8,7 @@ public class MTax implements Constant {
         
     }
     
-    public static List<String> validate(List<X_Tax> xTaxList) {
+    public static List<String> validate(List<XTax> xTaxList) {
 
         List<String> errorList = new ArrayList<>();
 
@@ -21,7 +21,7 @@ public class MTax implements Constant {
             // get the tax category only if there are taxes in xTaxList
             List<String> taxCategoryList = MInfoTaxCategory.getTaxCategoryStringList();
 
-            for (X_Tax tax : xTaxList) {
+            for (XTax tax : xTaxList) {
 
                 // the tax must exist and in the tax category in order to be valid
                 if (isStringNullOrBlank(tax.getTax())) {
@@ -63,21 +63,21 @@ public class MTax implements Constant {
             }
 
             if (validIds.size() > 0) {
-                    List<X_Tax> xt = TaxsByListId(validIds, false);
+                    List<XTax> validTaxes = TaxsByListId(validIds, false);
 
-                    if (xt.size() != validIds.size()) {
+                    if (validTaxes.size() != validIds.size()) {
                         errorList.add("Existen datos no guardados previamente");
                     } else {
                         // map tax id to created date only
-                        HashMap<String, Date> map_taxs = new HashMap<String, Date>();
+                        HashMap<String, Date> mapTaxs = new HashMap<String, Date>();
 
-                        for (X_Tax tax: xt) {
-                            map_taxs.put(tax.getId().toString(), tax.getCreated());
+                        for (XTax tax: validTaxes) {
+                            mapTaxs.put(tax.getId().toString(), tax.getCreated());
                         }
 
                         for (int i = 0; i < xTaxList.size(); i++) {
                             if (xTaxList.get(i).getId() != null) {
-                                xTaxList.get(i).setCreated(map_taxs.get(xTaxList.get(i).getId().toString()));
+                                xTaxList.get(i).setCreated(mapTaxs.get(xTaxList.get(i).getId().toString()));
                             }
                         }
                     }

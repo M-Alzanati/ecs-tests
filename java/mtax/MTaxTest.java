@@ -12,15 +12,15 @@ public class TestJunit {
 
     @Test
     public void testWithEmptyTaxes() {
-        String err = _mTax.validate(new List<X_Tax>()).get(0);
+        String err = _mTax.validate(new List<XTax>()).get(0);
         assertEquals("El documento no tiene tasas", err);
     }
 
     @Test
     public void testWhenTaxNotExist() {
-        X_Tax myTax = new X_Tax();
+        XTax myTax = new XTax();
 
-        List<X_Tax> myTaxes = new List<X_Tax>();
+        List<XTax> myTaxes = new List<XTax>();
         myTaxes.add(myTax);
 
         String err = _mTax.validate(myTaxes).get(0);
@@ -29,9 +29,9 @@ public class TestJunit {
 
     @Test
     public void testWhenTaxIdNotExist() {
-        X_Tax myTax = new X_Tax();
+        XTax myTax = new XTax();
 
-        List<X_Tax> myTaxes = new List<X_Tax>();
+        List<XTax> myTaxes = new List<XTax>();
         myTax.setTax("123e5v");
         myTaxes.add(myTax);
 
@@ -41,14 +41,14 @@ public class TestJunit {
 
     @Test
     public void testWhenAmountNotExist() {
-        X_Tax myTax = new X_Tax();
+        XTax myTax = new XTax();
 
-        List<X_Tax> myTaxes = new List<X_Tax>();
+        List<XTax> myTaxes = new List<XTax>();
         myTax.setTax("123e5v");
         myTax.setId("eee5123");
         myTaxes.add(myTax);
 
         String err = _mTax.validate(myTaxes).get(0);
-        assertEquals("El importe es obligatorio", err);
+        assertEquals("El importe es oblsigatorio", err);
     }
 }
