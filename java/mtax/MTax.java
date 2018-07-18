@@ -26,6 +26,7 @@ public class MTax implements Constant {
                 // the tax must exist and in the tax category in order to be valid
                 if (isStringNullOrBlank(tax.getTax())) {
                     errorList.add("El impuesto es obligatorio");
+                    continue;
                 } else {
                     if (!taxCategoryList.contains(tax.getTax())) {
                         errorList.add("El impuesto no es un dato valido");
